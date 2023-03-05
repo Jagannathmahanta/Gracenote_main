@@ -1,0 +1,1029 @@
+basePath: /
+definitions:
+  AddBody:
+    properties:
+      channel_id:
+        type: string
+      parent_channel_id:
+        type: string
+      parent_channel_slug:
+        type: string
+      slug:
+        type: string
+    type: object
+  DeleteBody:
+    properties:
+      channel_id:
+        type: string
+  Data:
+    properties:
+      hits:
+        description: Hits
+        items:
+          $ref: '#/definitions/Hit'
+        type: array
+      max_score:
+        description: MaxScore
+        type: number
+      total:
+        description: Total contains the total count of data
+        type: integer
+    type: object
+  Dma:
+    properties:
+      allowed:
+        items:
+          type: string
+        type: array
+      global:
+        type: boolean
+    type: object
+  GetTokenBody:
+    properties:
+      key:
+        type: string
+    type: object
+  Highlight:
+    properties:
+      tags:
+        items:
+          type: string
+        type: array
+    type: object
+  Hit:
+    properties:
+      _id:
+        description: ID contains the id of the content
+        type: string
+      _score:
+        description: Score
+        type: number
+      _source:
+        allOf:
+        - $ref: '#/definitions/Source'
+        description: Score
+      _type:
+        description: Type
+        type: string
+      highlight:
+        allOf:
+        - $ref: '#/definitions/Highlight'
+        description: Highlight
+    type: object
+  Markets:
+    properties:
+      dma:
+        allOf:
+        - $ref: '#/definitions/Dma'
+        description: Dma Designated Market Area
+      sga:
+        allOf:
+        - $ref: '#/definitions/Sga'
+        description: Sga Significant Geographical Area
+    type: object
+  MoreLikeThisSuccessResponse:
+    properties:
+      data:
+        allOf:
+        - $ref: '#/definitions/Data'
+        description: Data contains the response of the transform data
+      success:
+        description: Success provide the api request detail is success or not
+        type: boolean
+    type: object
+  Predefined:
+    properties:
+      remove_from_recommendation:
+        type: string
+      remove_from_search:
+        type: string
+      showonroku:
+        type: string
+    type: object
+  Sga:
+    properties:
+      allowed:
+        items:
+          type: string
+        type: array
+      global:
+        type: boolean
+    type: object
+  Source:
+    properties:
+      _id:
+        description: ID
+        type: string
+      actors:
+        description: Actors contains the actors details of content like series, movie
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      directors:
+        description: Directors contains the director details of content like series,
+          movie
+        items:
+          type: string
+        type: array
+      dspro_id:
+        description: DsproID
+        type: string
+      geo:
+        description: Geo contains the geolocation details
+        items:
+          type: string
+        type: array
+      has_youtube:
+        description: HasYoutube contains the details of YouTube channel
+        type: boolean
+      is_product:
+        description: IsProduct
+        type: boolean
+      markets:
+        allOf:
+        - $ref: '#/definitions/Markets'
+        description: Markets
+      poster:
+        description: Poster
+        type: string
+      programming_type:
+        description: ProgrammingType
+        type: string
+      rating:
+        description: Rating contains the rating of the content like series, movie
+        type: string
+      slug:
+        description: Slug
+        type: string
+      tags:
+        description: Tags
+        items:
+          type: string
+        type: array
+      theme:
+        allOf:
+        - $ref: '#/definitions/Theme'
+        description: Theme
+      title:
+        description: Title
+        type: string
+      video:
+        allOf:
+        - $ref: '#/definitions/Video'
+        description: Video
+      videos_thumb:
+        description: VideosThumb
+        type: string
+      wallpaper:
+        description: Wallpaper
+        type: string
+    type: object
+  Theme:
+    properties:
+      predefined:
+        $ref: '#/definitions/Predefined'
+    type: object
+  Video:
+    properties:
+      actors:
+        items:
+          type: string
+        type: array
+      directors:
+        items:
+          type: string
+        type: array
+      rating:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+    type: object
+  response.Error:
+    properties:
+      code:
+        description: |-
+          Code provides the numeric identifier of the
+          error condition occurred.
+        type: string
+      description:
+        description: |-
+          Description provides the short description of the
+          error condition occurred.
+        type: string
+    type: object
+  response.Header:
+    properties:
+      code:
+        description: |-
+          Code provides the numeric identifier of the overall response.
+          Returns 0 or -1
+        type: integer
+      count:
+        description: Count provides the total number of records available.
+        type: number
+      errors:
+        description: Errors provides the array of error conditions.
+        items:
+          $ref: '#/definitions/response.Error'
+        type: array
+      message:
+        description: |-
+          Message provides the short description of the overall response.
+          Returns success or failure
+        type: string
+      rows:
+        description: Rows provides the number of records returned.
+        type: number
+      source:
+        description: Source provides the unique identifier of the service.
+        type: string
+      start:
+        description: Start provides the start index of the records returned.
+        type: number
+      system_time:
+        description: |-
+          SystemTime provides the time in milliseconds when the response.
+          was served
+        type: integer
+      tracking_id:
+        description: |-
+          TrackingId provides the unique identifier of the request for
+          tracing purposes.
+        type: string
+    type: object
+  response.Response:
+    properties:
+      channels:
+        description: Data provides the business payload
+      data:
+        description: Data provides the business payload
+      error:
+        type: string
+      genres:
+        description: Data provides the business payload
+      header:
+        allOf:
+        - $ref: '#/definitions/response.Header'
+        description: Header provides the overall success or failure condition.
+      homepage: {}
+      movies:
+        description: Data provides the business payload
+      reason:
+        description: |-
+          Reason provides the short description of the overall response.
+          Returns success or failure
+        type: string
+      result:
+        description: Data provides the business payload
+      search:
+        description: Data provides the business payload
+      series:
+        description: Data provides the business payload
+      success:
+        description: Header provides the overall success or failure condition.
+        type: boolean
+      token:
+        description: Data provides the business payload
+    type: object
+host: data-store-trans.cms-stag.amdvids.com
+info:
+  contact: {}
+  title: LocalNow API Documentation
+  version: 1.0.0
+paths:
+  /channel/{countryCode}/{channel_slug}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns an array of object according to the the slug.
+        For live channels(epg-kgtv,epg-film-plug etc), for Series(E62D14C9-5ADB-40BC-A45E-F48552043B7E)
+        and for Movie(mercury-man,headhunters-english-dub etc).
+      parameters:
+      - description: Country Code (eg-US) 2-letter ISO Alpha2 formatted country code
+          of the end-user.
+        in: path
+        name: countryCode
+        required: true
+        type: string
+      - description: 'channel_slug (Example :for live channels : epg-kgtv, epg-film-plug
+          .For movies : headhunters-english-dub, mercury-man .For Series: E62D14C9-5ADB-40BC-A45E-F48552043B7E)
+          Slug of the channel/movie/series  whose playlist you wish to retrieve.'
+        in: path
+        name: channel_slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Get live channels, series, movie
+      tags:
+      - Get Live Channel Details / Movie Details / Series Details and Episodes
+  /homepage/{countryCode}/{platform}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns an array of objects which can be used to
+        construct a platform-specific home page.
+      parameters:
+      - description: Country Code (eg-US)  2-letter ISO Alpha2 formatted country code
+          of the end-user.
+        in: path
+        name: countryCode
+        required: true
+        type: string
+      - description: 'Platform (eg.-android) Enum: android, androidtv, appletv, firetv,
+          ios, roku, tizen, website. The platform creating the request.'
+        in: path
+        name: platform
+        required: true
+        type: string
+      - description: Genre A genre to query for. The list of available genres can
+          be acquired from https://api.myspotlight.tv/#operation/getCompanyChannels.
+          Because this parameter is in the query, the value must be URL encoded (eg
+          Science Fiction should be passed as Science%20Fiction)
+        in: query
+        name: genre
+        type: string
+      - description: 'Exclude Ratings  Example: exclude_ratings=PG,PG-13,R A comma-separated
+          value with ratings such as PG, R, etc to exclude from the return. Please
+          note that this filters channels by rating, not videos, and will exclude
+          all channels with those ratings. If this value is not sent, all channels
+          will be returned as normal.'
+        format: string
+        in: query
+        name: exclude_ratings
+        type: string
+      - description: 'Max Ratings  Example: max_ratings=PG-13,R A comma-separated
+          value with ratings such as PG, R, etc to send to iris.tv as the maximum
+          rating for results returned from their system..'
+        format: string
+        in: query
+        name: max_ratings
+        type: string
+      - description: Asset Dates A flag to return asset dates (created_at, updated_at)
+          with video assets.
+        format: boolean
+        in: query
+        name: asset_dates
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Get home page data
+      tags:
+      - Get Homepage with Rails
+  /movies/{countryCode}/{platform}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns an array of objects which can be used to
+        construct a platform-specific movies page.
+      parameters:
+      - description: Country Code (eg-US) 2-letter ISO Alpha2 formatted country code
+          of the end-user.
+        in: path
+        name: countryCode
+        required: true
+        type: string
+      - description: 'Platform (eg.-android) Enum: android, androidtv, appletv, firetv,
+          ios, roku, tizen, website. The platform creating the request.'
+        in: path
+        name: platform
+        required: true
+        type: string
+      - description: Genre A genre to query for. The list of available genres can
+          be acquired from https://api.myspotlight.tv/#operation/getCompanyChannels.
+          Because this parameter is in the query, the value must be URL encoded (eg
+          Science Fiction should be passed as Science%20Fiction)
+        format: string
+        in: query
+        name: genre
+        type: string
+      - description: 'Exclude Ratings  Example: exclude_ratings=PG,PG-13,R A comma-separated
+          value with ratings such as PG, R, etc to exclude from the return. Please
+          note that this filters channels by rating, not videos, and will exclude
+          all channels with those ratings. If this value is not sent, all channels
+          will be returned as normal.'
+        format: string
+        in: query
+        name: exclude_ratings
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Get movies page data
+      tags:
+      - Get Movies with Rails
+  /series/{countryCode}/{platform}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns an array of objects which can be used to
+        construct a platform-specific series page.
+      parameters:
+      - description: Country Code (eg-US) 2-letter ISO Alpha2 formatted country code
+          of the end-user.
+        in: path
+        name: countryCode
+        required: true
+        type: string
+      - description: 'Platform (eg.-android) Enum: android, androidtv, appletv, firetv,
+          ios, roku, tizen, website. The platform creating the request.'
+        in: path
+        name: platform
+        required: true
+        type: string
+      - description: Genre A genre to query for. The list of available genres can
+          be acquired from https://api.myspotlight.tv/#operation/getCompanyChannels.
+          Because this parameter is in the query, the value must be URL encoded (eg
+          Science Fiction should be passed as Science%20Fiction)
+        format: string
+        in: query
+        name: genre
+        type: string
+      - description: 'Exclude Ratings  Example: exclude_ratings=PG,PG-13,R A comma-separated
+          value with ratings such as PG, R, etc to exclude from the return. Please
+          note that this filters channels by rating, not videos, and will exclude
+          all channels with those ratings. If this value is not sent, all channels
+          will be returned as normal.'
+        format: string
+        in: query
+        name: exclude_ratings
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Get series page data
+      tags:
+      - Get Shows with Rails
+  /search/recommendation/channel:
+    get:
+      consumes:
+      - application/json
+      description: Obtain an array of recommended channels to view based on Channel
+        ID or slug.
+      parameters:
+      - description: Q (eg- 5584D1F9-D627-4205-BDF5-68A541F1BD85) dotstudioPRO channel
+          ID or slug of the channel you want to receive recommendations for.
+        in: query
+        name: q
+        required: true
+        type: string
+      - description: 'Exclude Ratings  Example: exclude_ratings=PG,PG-13,R A comma-separated
+          value with ratings such as PG, R, etc to exclude from the return. Please
+          note that this filters channels by rating, not videos, and will exclude
+          all channels with those ratings. If this value is not sent, all channels
+          will be returned as normal.'
+        in: query
+        name: exclude_ratings
+        type: string
+      - description: 'From  Default: 0 Index at which to begin returning search results
+          (useful for pagination).'
+        in: query
+        name: from
+        type: string
+      - description: 'Size  Default: 10 How many videos to return in the search results
+          (useful for pagination).'
+        in: query
+        name: size
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/MoreLikeThisSuccessResponse'
+      summary: Get recommendations by Channel
+      tags:
+      - Get “More Like This” for selected Movie
+  /live/epg/{countryCode}/{platform}:
+    get:
+      consumes:
+      - application/json
+      description: Get an Electronic Programming guide for your company. The EPG will
+        be constructed from
+      parameters:
+      - description: Country Code (eg-US) 2-letter ISO Alpha2 formatted country code
+          of the end-user.
+        in: path
+        name: countryCode
+        required: true
+        type: string
+      - description: Platform eg:"android" ,"androidtv" ,"appletv" ,"firetv" ,"ios" ,"roku" ,"tizen" ,"website" ,"html5"
+        format: string
+        in: path
+        required: true
+        name: platform
+        type: string
+      - description: Genre eg:"comedy" ,"action"
+        format: string
+        in: query
+        name: genre
+        type: string
+      - description: Exclude Ratings eg:PG,PG-13,R
+        format: string
+        in: query
+        name: exclude_ratings
+        type: string
+      - description: Market eg:gaAtlanta , azPhoenix
+        format: string
+        in: query
+        name: market
+        type: string
+      - description: Start Time (Ending timestamp for the window in which programs are searched. Must be greater or equal than now)eg:2020-07-29T21:05:10.488Z
+        format: string
+        in: query
+        name: start_time
+        type: string
+      - description: End Time (Ending timestamp for the window in which programs are searched. Must be greater than start_time) eg:2020-07-30T21:05:10.488Z
+        format: string
+        in: query
+        name: end_time
+        type: string
+      - description: DMA eg:501 , 679 , 881
+        format: number
+        in: query
+        name: dma
+        type: string
+      - description: Default:0 (Index at which to begin returning results)
+        format: number
+        in: query
+        name: from
+        type: string
+      - description: Default:1000 (How many channels to return in the results)
+        format: number
+        in: query
+        name: size
+        type: string
+      - description: Default:3 (Max number of programs to return per channel) eg:5, 100
+        format: number
+        in: query
+        name: program_size
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/MoreLikeThisSuccessResponse'
+      summary: Get company EPG
+      tags:
+      - Get EPG
+  /company/available/genres:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns a single "genres list" and includes direct
+        links to the media
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Get genre list
+      tags:
+      - Get Genre Lists
+  /find/channels/{platform}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint Obtain an array of any channel matching the search
+        query. The channels returned are automatically sorted based on relevance.
+        This version of search is based on relevant hits to the channel's title, people,
+        genre and tags keys..
+      parameters:
+      - description: 'api_key . Example : fb8812b9-b5f7-472d-9ab2-8e662253ca03 '
+        in: header
+        name: x-access-token
+        type: string
+      - description: 'Example: ''android'' ,''androidtv'' ,''appletv'' ,''firetv''
+          ,''ios'' ,''roku'' ,''tizen'' ,''website'' ,''html5''. The platform creating
+          the request.'
+        in: path
+        name: platform
+        required: true
+        type: string
+      - description: 'Query of your search. Example : comedy,horror etc'
+        in: query
+        name: q
+        required: true
+        type: string
+      - description: 'Default: 0 . Index at which to begin returning search results
+          (useful for pagination).'
+        in: query
+        name: from
+        type: number
+      - description: 'Default: 10 . How many channels to return in the search results
+          (useful for pagination).'
+        in: query
+        name: size
+        type: number
+      - description: 'Exclude Ratings  Example: exclude_ratings = PG, PG-13, R A comma-separated
+          value with ratings such as PG, R, etc to exclude from the return. Please
+          note that this filters channels by rating, not videos, and will exclude
+          all channels with those ratings. If this value is not sent, all channels
+          will be returned as normal.'
+        format: string
+        in: query
+        name: exclude_ratings
+        type: string
+      - description: 'Example: dma = 501, 679, 881 A comma-separated list of DMAs
+          such as 501, 881, etc to include from the return.'
+        in: query
+        name: dma
+        type: string
+      - description: 'Example: market = gaAtlanta, azPhoenix A comma-separated list
+          of SGAs such as gaAtlanta, azPhoenix, etc to include from the return'
+        in: query
+        name: market
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Search data
+      tags:
+      - Search Content
+  /watchlist/channels/add:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint Add a channel to a user's watchlist.
+      parameters:
+      - description: Client Token Eg.- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: true
+        type: string
+      - description: WatchList Request eg- "slug":"mercury-man" or "channel_id":"5584D1F9-D627-4205-BDF5-68A541F1BD85"
+        in: body
+        name: WatchList
+        schema:
+          $ref: '#/definitions/AddBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Add to a user's watchlist.
+      tags:
+      - Add Item to Watchlist
+  /watchlist/channels:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns a list of channels that a user has added
+        to their watchlist.
+      parameters:
+      - description: Client Token Eg.- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: true
+        type: string
+      - description: 'Exclude Live Example: exclude_live=1 Exclude channels with a
+          programming type of '
+        in: query
+        name: exclude_live
+        type: string
+      - description: 'Exclude Vod Example: exclude_vod=1 Include only channels that
+          have a programming type of '
+        in: query
+        name: exclude_vod
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Get WatchList data
+      tags:
+      - Get WatchList
+  /watchlist/channels/delete:
+    delete:
+      consumes:
+      - application/json
+      description: This endpoint Remove a channel from the user's watchlist array.
+      parameters:
+      - description: x-client-token eg- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: true
+        type: string
+      - description: WatchList Request eg- "channel_id":"5584D1F9-D627-4205-BDF5-68A541F1BD85","mercury-man"
+        in: body
+        name: WatchList
+        schema:
+          $ref: '#/definitions/DeleteBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Delete a channel from a user's watchlist
+      tags:
+      - Remove Item from Watchlist
+  /users/videos/point/{video_id}/{point}:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint ensure a user can be redirected to the appropriate
+        channel later on (via deep linking or selecting a "continue watching" entry
+        in an application) it is recommended to pass information about the channel.
+      parameters:
+      - description: Client Token Eg- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: true
+        type: string
+      - description: 'The ID of the video you wish to save  eg- D0EF6A0B-E4E7-40B0-A749-6F36A691FAAD '
+        in: path
+        name: video_id
+        required: true
+        type: string
+      - description: Time (in seconds) the user has watched the video to eg- 12100
+        in: path
+        name: point
+        required: true
+        type: string
+      - description: The ID of the channel this video is being viewed from eg- D0EF6A0B-E4E7-40B0-A749-6F36A691FAAD
+        in: query
+        name: channel_id
+        type: string
+      - description: The ID of the parent channel the video is being viewed from (if
+          applicable) eg- D0EF6A0B-E4E7-40B0-A749-6F36A691FAAD
+        in: query
+        name: parent_channel_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Insert Bookmarks
+      tags:
+      - Insert Bookmarks
+  /users/resumption/videos:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns two arrays containing video objects with
+        resumption data.
+      parameters:
+      - description: Client Token Eg.- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: true
+        type: string
+      - description: ' Default : 100 ,The limit of resumptions for each returned array.
+          If you set a limit of 50, the continue-watching and watch-again arrays will
+          have a maximum of 50 resumptions each.'
+        in: query
+        name: limit
+        type: string
+      - description: 'Detault : 0.05 ,The minimum progress percentage (in decimal
+          format) that will be used to get continue-watching values.'
+        in: query
+        name: ct_min
+        type: string
+      - description: 'Detault : 0.95 ,The limit of progress percentage (in decimal
+          format) that will be used to get continue-watching values.'
+        in: query
+        name: ct_max
+        type: string
+      - description: 'Detault : 0.95 ,The minimum progress percentage (in decimal
+          format) that will be used to get watch-again values.'
+        in: query
+        name: wa_min
+        type: string
+      - description: 'Detault : 0 ,Get only the most recent values from a given channel
+          or parent channel. Without this flag, if you watch 3 episodes of a show,
+          that is 3 different resumption points and will be returned as 3 different
+          resumption points. With this flag, you would only receive one resumption
+          point for the show, which will be the latest episode was watched.'
+        in: query
+        name: most_recent
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: List Bookmarks
+      tags:
+      - List Bookmarks
+  /video/play/{video_id}/{width}/{height}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint Returns a video content object & playback URLs for a particular Video ID.
+      parameters:
+      - description: Client Token Eg.- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: false
+        type: string
+      - description: 'ID of the video you wish to retrieve.''eg: F6ECED48-87B5-428C-A452-1CC07D78867A'''
+        in: path
+        name: video_id
+        required: true
+        type: string
+      - description: 'Width of the player the video will be getting displayed in.
+          Required to aid in advertising & targeting. ''eg: 1000'''
+        in: path
+        name: width
+        required: true
+        type: string
+      - description: 'Height of the player the video will be getting displayed in.
+          Required to aid in advertising & targeting. ''eg: 563'''
+        in: path
+        name: height
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Add to a user's playback_authorization.
+      tags:
+      - Playback Authorization
+  /video/playbyslug/{slug}/{width}/{height}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint Returns a video content object & playback URLs for a particular Video ID.
+      parameters:
+      - description: Client Token Eg.- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: false
+        type: string
+      - description: 'Slug of the video you wish to retrieve.''eg: rock-icon-motley-crew'
+        in: path
+        name: slug
+        required: true
+        type: string
+      - description: 'Width of the player the video will be getting displayed in.
+          Required to aid in advertising & targeting. ''eg: 1000'''
+        in: path
+        name: width
+        required: true
+        type: string
+      - description: 'Height of the player the video will be getting displayed in.
+          Required to aid in advertising & targeting. ''eg: 563'''
+        in: path
+        name: height
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Add to a user's playback_authorization.
+      tags:
+      - Playback Authorization By Slug
+  /vmap/{video_id}/{width}/{height}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint creates a VMAP XML doc based on ad parameters passed, as well as the given video id.
+      parameters:
+      - description: Client Token Eg.- eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwidHlwIjoiSldUIn0..Zgq_E2xZYybKuDTs.4U1IzSelukZlYsy7xh8GPxuAqN7bJaCd3rrLWPIMPPiQtNowl-m2svAgsIPn_dYODxTmxA8cmzx3TNd0KouVHm91SJ8pkUTLzQSRk-tYmHkR_TOF1UaMee6sv4cAMoN6FEqzU6BP1ibeovwee6iDWAbLeY_vvTe5Miu6i1mjqby3RjtPG_gX6jPKUOMN5gF_7cFAZocsMO0Ye41avB7oX3J1DZiaDz6PFdYpN8SuchsSxPvs30ae_uV-88A_7SWQB6mDobbIt0idgMc_RFIkRmzovFw5vLOqzljb3cB0IFq1pqX7ysQM0ZCa-p2O4EcZDv8d9ZSdrbbeQlYjGtFLUOUtDKAWkg9M0nbZa_4dbTot7Xh7pOCURq6NQ1zK8fTTzfr2GEBsr-skZac0okDi4-kJ3y_0EyjmwlQJMRWxk4A3EvJEeYJtV4cSB_8hwc_VrO1nxbEqDxCKMW7QQ0jyP6c6sS1EB5xflP4tGv8z5AyHc1xTR75ptuJ1ga5FA_nZQuKGbHbDgZepdMNkgVdVcHk.Ww-usV4HftSJjRBY6-gpog
+        in: header
+        name: x-client-token
+        required: true
+        type: string
+      - description: Device Id Eg.- eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicGxheWJhY2stYXV0aC1zZXJ2aWNlIl0sImRldmljZUlkIjoiZmlyc3RsaWdodC1hbWQtZGV2aWNlLTAwMSIsImV4cCI6MTY3NTg5MzkwMCwiaWF0IjoxNjc1ODYzOTAwLCJpc3MiOiJxdWlja3BsYXkifQ.prW5xbX5mx_sZTS0FggfhQkwKqi9Rd7d8a1jgg48z24
+        in: header
+        name: x-device-Id
+        required: true
+        type: string
+      - description: Client ID Eg.- amd-localnow-web
+        in: header
+        name: x-Client-Id
+        required: true
+        type: string
+      - description: 'ID of the video you wish to retrieve ''eg: 5f367236b70e4f556b8b456a'''
+        in: path
+        name: video_id
+        required: true
+        type: string
+      - description: 'The width of the video player requesting the VMAP ''eg: 1002'''
+        in: path
+        name: width
+        required: true
+        type: string
+      - description: 'The height of the video player requesting the VMAP ''eg: 564'''
+        in: path
+        name: height
+        required: true
+        type: string
+      - description: 'eg: true '
+        in: query
+        name: secure
+        type: string  
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Add to a user's v_map.
+      tags:
+      - VMAP  
+  /image/{id}/{name}/{width}/{height}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns an array of objects which can be used to
+        construct a platform-specific home page.
+      parameters:
+      - description: Unique identifier to trace the HTTP request for errors. The service will auto-generate a new identifier to return in the response if this parameter was not received.
+        in: header
+        name: X-Tracking-Id
+        required: false
+        type: string
+      - description: Unique identifier of the asset for which the image is requested.eg:-49A2E481-F694-4630-8EE4-C195BB67A799
+        in: path
+        name: id
+        required: true
+        type: string
+      - description:  Name of the image.eg:- 0-16x9.jpg
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Desired width of the output image. Height will be adjusted as per source aspect ratio.eg:300
+        in: path
+        name: width
+        required: true
+        type: string
+      - description: Desired height of the output image. Width will be adjusted as per source aspect ratio.
+        format: string
+        in: path
+        name: height
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Get Image data
+      tags:
+      - Image Resize
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: x-client-token
+    type: apiKey
+swagger: "2.0"
